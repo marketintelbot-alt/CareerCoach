@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Coach</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-bg"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-pill">Career Coach</div>
+      <div id="engineStatus" class="engine-status">Loading career model...</div>
+    </header>
+
+    <section id="landingScreen" class="screen active">
+      <div class="card hero-card">
+        <p class="eyebrow">Future planning, simplified</p>
+        <h1>Career Coach</h1>
+        <p class="subtitle">Answer a few questions — get real career matches.</p>
+        <button id="startBtn" class="btn btn-primary" disabled>Loading...</button>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen">
+      <div class="card quiz-card">
+        <div class="progress-row">
+          <div id="progressText" class="progress-text">Question 1 of 22</div>
+          <div class="progress-track">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div id="questionContainer" class="question-container"></div>
+
+        <div class="quiz-actions">
+          <button id="prevBtn" class="btn btn-secondary">Back</button>
+          <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultsScreen" class="screen">
+      <div class="card results-card">
+        <div class="results-header">
+          <div>
+            <h2>Your Career Matches</h2>
+            <p id="resultsSummary" class="results-summary"></p>
+          </div>
+          <div class="results-actions">
+            <button id="retakeBtn" class="btn btn-secondary">Retake quiz</button>
+            <button id="downloadBtn" class="btn btn-secondary">Download results</button>
+            <button id="shareBtn" class="btn btn-primary">Share link</button>
+          </div>
+        </div>
+
+        <div class="filters-grid">
+          <label>
+            College path
+            <select id="collegeFilter">
+              <option value="all">All</option>
+              <option value="required">College required</option>
+              <option value="not_required">No college required</option>
+            </select>
+          </label>
+
+          <label>
+            Environment
+            <select id="environmentFilter">
+              <option value="all">All</option>
+              <option value="indoor">Indoor</option>
+              <option value="outdoor">Outdoor</option>
+            </select>
+          </label>
+
+          <label>
+            Social style
+            <select id="socialFilter">
+              <option value="all">All</option>
+              <option value="high">High social</option>
+              <option value="low">Low social</option>
+            </select>
+          </label>
+
+          <label>
+            Math intensity
+            <select id="mathFilter">
+              <option value="all">All</option>
+              <option value="math_heavy">Math-heavy</option>
+              <option value="not_math_heavy">Not math-heavy</option>
+            </select>
+          </label>
+
+          <label class="toggle-label">
+            <input id="earningToggle" type="checkbox" />
+            <span>Highest earning first</span>
+          </label>
+        </div>
+
+        <div id="resultsList" class="results-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="loadingOverlay" class="loading-overlay active" aria-live="polite">
+    <div class="loader-card">
+      <div class="spinner"></div>
+      <p id="loadingText">Initializing Pyodide model...</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
